@@ -1,0 +1,37 @@
+From 486ec4ba7b334a1e549fa90cb00efcacdb685983 Mon Sep 17 00:00:00 2001
+From: Oliver Tan <otan@cockroachlabs.com>
+Date: Mon, 15 May 2023 13:31:05 +1000
+Subject: [PATCH] use-function-name
+
+---
+ pkg/sql/sem/tree/function_name.go | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/pkg/sql/sem/tree/function_name.go b/pkg/sql/sem/tree/function_name.go
+index 3b0ac48..5e29921 100644
+--- a/pkg/sql/sem/tree/function_name.go
++++ b/pkg/sql/sem/tree/function_name.go
+@@ -19,7 +19,6 @@ import (
+ 	"github.com/cockroachdb/cockroachdb-parser/pkg/sql/pgwire/pgerror"
+ 	"github.com/cockroachdb/cockroachdb-parser/pkg/sql/sem/catconstants"
+ 	"github.com/cockroachdb/errors"
+-	"github.com/cockroachdb/redact"
+ 	"github.com/lib/pq/oid"
+ )
+ 
+@@ -146,7 +145,11 @@ func (ref *ResolvableFunctionReference) Resolve(
+ func WrapFunction(n string) ResolvableFunctionReference {
+ 	fd, ok := FunDefs[n]
+ 	if !ok {
+-		panic(errors.AssertionFailedf("function %s() not defined", redact.Safe(n)))
++		return ResolvableFunctionReference{
++			FunctionReference: &FunctionDefinition{
++				Name: n,
++			},
++		}
+ 	}
+ 	return ResolvableFunctionReference{FunctionReference: fd}
+ }
+-- 
+2.39.2 (Apple Git-143)
+
