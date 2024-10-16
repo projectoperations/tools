@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "make": "^0.8.1"
+  },
+  "name": "workspaces",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igecloudsdev/devcon-template-starter.git"
+  },
+  "keywords": [
+    "#"
+  ],
+  "author": "Moses Fabiyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/igecloudsdev/devcon-template-starter/issues"
+  },
+  "homepage": "https://github.com/igecloudsdev/devcon-template-starter#readme",
+  "description": ""
+}
